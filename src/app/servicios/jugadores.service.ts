@@ -14,7 +14,7 @@ filtrado:any;
 
   traertodos(ruta : string,filtro: string) 
   {
-    return this.miHttp.traerJugadores(ruta).then(data=>{
+    /* return this.miHttp.traerJugadores(ruta).then(data=>{
       console.info("jugadores service",data);
 
       this.filtrado=data;
@@ -39,7 +39,7 @@ filtrado:any;
     return this.filtrado;
       
 
-    });
+    }); */
   }
 
 }

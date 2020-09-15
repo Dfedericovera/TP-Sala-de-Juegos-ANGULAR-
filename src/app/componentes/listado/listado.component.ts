@@ -19,7 +19,7 @@ export class ListadoComponent implements OnInit {
     
   }
 
-  llamaService(){
+ /*  llamaService(){
     console.log("llamaService");
     this.listadoParaCompartir= this.miServicioJuego.listar();
   }
@@ -29,5 +29,5 @@ export class ListadoComponent implements OnInit {
     this.miServicioJuego.listarPromesa().then((listado) => {
         this.listadoParaCompartir = listado;
     });
-  }
+  } */
 }

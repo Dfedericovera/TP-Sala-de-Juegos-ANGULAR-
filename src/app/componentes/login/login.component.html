@@ -35,7 +35,7 @@
         <label><b>Clave</b></label>
         <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
             
-        <button *ngIf="logeando"  (click)="MoverBarraDeProgreso()" >Ingresar</button>
+        <button *ngIf="logeando"   >Ingresar</button>
        
         <div *ngIf="!logeando" class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >

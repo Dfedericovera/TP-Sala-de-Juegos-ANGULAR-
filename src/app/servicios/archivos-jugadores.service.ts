@@ -12,7 +12,7 @@ export class ArchivosJugadoresService {
 
 
   public   traerJugadores(ruta) {
-    return this.miHttp.httpGetO(this.api+ruta)
+/*     return this.miHttp.httpGetO(this.api+ruta)
     .toPromise()
     .then( data => {
       console.log("Archivo jugadores");
@@ -20,7 +20,7 @@ export class ArchivosJugadoresService {
       return data;
     }, err => {
       console.log( err );
-    })
+    }) */
  
 
   
