@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "emtyProyect"
+    }
+  },
+  "defaultProject": "emtyProyect",
+  "cli": {
+    "analytics": "b00f9059-edea-4599-b03f-e1ec3aa76045"
+  }
 }
