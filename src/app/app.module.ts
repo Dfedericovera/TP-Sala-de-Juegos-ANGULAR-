@@ -41,7 +41,6 @@ const MiRuteo = [{path: 'error' , component: ErrorComponent},
 import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugadores-listado.component';
 
 import { JuegoServiceService } from './servicios/juego-service.service';
-import { ListadosComponent } from './componentes/listados/listados.component';
 import { JuegosComponent } from './componentes/juegos/juegos.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { MenuCardComponent } from './componentes/menu-card/menu-card.component';
@@ -51,6 +50,8 @@ import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 import { ListadoDePaisesComponent } from './componentes/listado-de-paises/listado-de-paises.component';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
+import { MemotestComponent } from './componentes/memotest/memotest.component';
+import { CaraosecaComponent } from './componentes/caraoseca/caraoseca.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,6 @@ import { SexoPipe } from './pipes/sexo.pipe';
     AdivinaMasListadoComponent,
     AgilidadMasListadoComponent,
     ListadoComponent,
-    ListadosComponent,
     JuegosComponent,
     RegistroComponent,
     MenuCardComponent,
@@ -75,7 +75,9 @@ import { SexoPipe } from './pipes/sexo.pipe';
     ListadoDePaisesComponent,
     JugadoresListadoComponent,
     InputJugadoresComponent,
-    SexoPipe
+    SexoPipe,
+    MemotestComponent,
+    CaraosecaComponent
   ],
   imports: [
     BrowserModule,

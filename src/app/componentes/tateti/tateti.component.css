@@ -1,0 +1,102 @@
+/* Space out content a bit */
+.body {
+    background: linear-gradient(#26547970, rgba(188, 137, 49, 0.486));
+    position: relative;
+    top: -50px;
+  }
+  
+  /* Main ficha-tecnica message and sign up button */
+  .jumbotron {
+    text-align: center;
+    background: rgba(255,255,255,0.5);
+    position: relative;
+    top: -9px;    
+  }
+  .jumbotron h1{
+    color: #000;
+  }
+  
+  /* Responsive: Portrait tablets and up */
+  @media screen and (min-width: 768px) {
+    .container {
+      max-width: 730px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+      border-bottom: 0;
+    }
+  }
+
+  /* NUEVO */
+ 
+  h1{
+    text-align: center;
+    color: #fff;
+  }
+  .clearfix{
+    clear: both;
+  }
+  #box{
+    width: 350px;
+    overflow: auto;
+    margin: 40px auto;
+    background: #666;
+    padding-bottom: 40px;
+    border-radius: 10px;
+  }
+  #message{
+    background: #333;
+    color: #fff;
+  }
+  #gameBoard li{
+    float: left;
+    margin: 10px;
+    height: 70px;
+    width: 70px;
+    font-size: 50px;
+    background: #333;
+    color: #ccc;
+    list-style: none;
+    text-align: center;
+    border-radius: 5px;
+  }
+  #gameBoard li:hover, #reset:hover{
+    cursor: pointer;
+    background: #000;
+  }
+  #reset{
+    border: 0;
+    background: #444;
+    color: #fff;
+    width: 70%;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  #efecto {
+    position: absolute;
+    background: rgba(0,0,0,0.9);
+    height: 150%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transition: all 0.1s;
+}
+
+#efecto h1 {
+    text-align: center;
+    font-size: 5em;
+    color: #fff;
+    margin: 2em 0 0;
+    padding: 0;
+    line-height: 1em;
+}
+#efecto h3 {
+    text-align: center;
+    font-size: 3em;
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+    color: #ddd;
+}

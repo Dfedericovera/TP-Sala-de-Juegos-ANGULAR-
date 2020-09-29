@@ -12,7 +12,6 @@ import { MenuComponent } from '../componentes/menu/menu.component';
 import { AdivinaMasListadoComponent } from '../componentes/adivina-mas-listado/adivina-mas-listado.component';
 import { AgilidadMasListadoComponent } from '../componentes/agilidad-mas-listado/agilidad-mas-listado.component';
 import { ListadoComponent } from'../componentes/listado/listado.component'
-import { ListadosComponent } from '../componentes/listados/listados.component';
 import { JuegosComponent } from '../componentes/juegos/juegos.component';
 import { RegistroComponent } from '../componentes/registro/registro.component';
 import { MenuCardComponent } from '../componentes/menu-card/menu-card.component';
@@ -20,6 +19,11 @@ import { CabeceraComponent } from '../componentes/cabecera/cabecera.component';
 import { QuienSoyComponent } from '../componentes/quien-soy/quien-soy.component'
 import { ListadoDePaisesComponent } from '../componentes/listado-de-paises/listado-de-paises.component'
 import { JugadoresListadoComponent } from '../componentes/jugadores-listado/jugadores-listado.component';
+import { PptComponent } from '../componentes/ppt/ppt.component';
+import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
+import { TatetiComponent } from '../componentes/tateti/tateti.component';
+import { MemotestComponent } from '../componentes/memotest/memotest.component';
+import { CaraosecaComponent } from '../componentes/caraoseca/caraoseca.component';
 
 
 // declaro donde quiero que se dirija
@@ -40,6 +44,11 @@ children:
      {path: 'Adivina' , component: AdivinaElNumeroComponent},
       {path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent},
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
+      {path: 'Anagrama' , component: AnagramaComponent},
+      {path: 'Tateti' , component: TatetiComponent},
+      {path: 'Memotest' , component: MemotestComponent},
+      {path: 'Caraoseca' , component: CaraosecaComponent},
+      {path: 'Ppt' , component: PptComponent},
       {path: 'Agilidad' , component: AgilidadAritmeticaComponent}]
 },
 {path: '**' , component: ErrorComponent},

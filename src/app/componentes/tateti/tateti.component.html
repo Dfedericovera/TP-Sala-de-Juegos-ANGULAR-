@@ -1,0 +1,51 @@
+<div class="jumbotron">
+  <h1>¡Ta te ti!</h1>
+  <h4>Bienvenido al juego de Tateti</h4>
+  <label for="checkTablero">
+    <h5>Mostrar Tablero</h5>
+  </label>
+  <!-- checkbox para mostrar el tablero --> 
+  <!-- <bSwitch [(ngModel)]="toogle" [switch-handle-width]="60"[switch-off-color]="'danger'" [switch-off-text]="'Ocultar'" [switch-on-text]="'Mostrar'"
+    [switch-animate]="true" [switch-size]="'small'" [switch-base-class]="'bootstrap-switch'"(changeState)="onChange($event)">
+  </bSwitch> -->
+
+</div>
+<div id="body" class="body" hidden>
+  <div class="text-center" id="box">
+    <header>
+      <h1>Suerte!</h1>
+    </header>
+    <div id="message"></div>
+    <ul id="gameBoard">
+      <li class="tic" id="0" (click)="eleccion(0)"></li>
+      <li class="tic" id="1" (click)="eleccion(1)"></li>
+      <li class="tic" id="2" (click)="eleccion(2)"></li>
+      <li class="tic" id="3" (click)="eleccion(3)"></li>
+      <li class="tic" id="4" (click)="eleccion(4)"></li>
+      <li class="tic" id="5" (click)="eleccion(5)"></li>
+      <li class="tic" id="6" (click)="eleccion(6)"></li>
+      <li class="tic" id="7" (click)="eleccion(7)"></li>
+      <li class="tic" id="8" (click)="eleccion(8)"></li>
+    </ul>
+    <div class="clearfix"></div>
+    <footer>
+      <button id="reset" (click)="reset()">Reset</button>
+    </footer>
+  </div>
+</div>
+
+<div id="efecto" style="display:none" (click)="quitarEfecto()"><h1 id="icon">{{mensaje}}</h1> </div>
+
+<div id="modal-mensajes" class="mensaje" hidden>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p data-mensaje>{{mensaje}}&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-jugar data-dismiss="modal">Jugar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

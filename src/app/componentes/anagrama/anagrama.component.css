@@ -1,0 +1,49 @@
+
+/*Game*/
+
+.game {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: space-around;
+}
+.buttons button {
+  cursor: pointer;
+  }
+
+.icon{
+  cursor: help;
+}
+
+.icon:hover{
+  background: black;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+border-radius: 200px 200px 200px 200px;
+-moz-border-radius: 200px 200px 200px 200px;
+-webkit-border-radius: 200px 200px 200px 200px;
+border: 0px solid #000000;
+
+}
+
+.register{
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+  margin-top: auto;
+  padding: 3%;
+  border-radius: 2.5rem;
+  position: relative;
+  left: 0 auto;
+  top: 0 auto;
+  border: none;
+
+  margin-right: 22%;
+  margin-left: 20%;
+  
+}

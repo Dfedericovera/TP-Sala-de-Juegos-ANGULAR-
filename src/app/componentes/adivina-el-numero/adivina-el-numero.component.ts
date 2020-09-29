@@ -1,6 +1,7 @@
 
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
-import { JuegoAdivina } from '../../clases/juego-adivina'
+import { JuegoAdivina } from '../../clases/juego-adivina';
+import { JuegoServiceService } from "../../servicios/juego-service.service";
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -14,10 +15,16 @@ export class AdivinaElNumeroComponent implements OnInit {
   Mensajes:string;
   contador:number;
   ocultarVerificar:boolean;
+
+  ngOnInit() {
+    
+  }
+
+
  
-  constructor() { 
-    this.nuevoJuego = new JuegoAdivina();
-    console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
+  constructor(private juegoService:JuegoServiceService) { 
+    this.nuevoJuego = new JuegoAdivina('Adivina');
+    /* console.info("numero Secreto:",this.nuevoJuego.numeroSecreto); */  
     this.ocultarVerificar=false;
   }
   generarnumero() {
@@ -28,12 +35,13 @@ export class AdivinaElNumeroComponent implements OnInit {
   {
     this.contador++;
     this.ocultarVerificar=true;
-    console.info("numero Secreto:",this.nuevoJuego.gano);  
+    /* console.info("numero Secreto:",this.nuevoJuego.gano);   */
     if (this.nuevoJuego.verificar()){
       
       this.enviarJuego.emit(this.nuevoJuego);
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
+      /* this.juegoService.registrarJuego("/juegos/registrar",this.nuevoJuego.nombreJuego,this.nuevoJuego.verificar()); */
 
     }else{
 
@@ -61,12 +69,12 @@ export class AdivinaElNumeroComponent implements OnInit {
         default:
             mensaje="Ya le erraste "+ this.contador+" veces";
           break;
-      }
+      }      
       this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda :"+this.nuevoJuego.retornarAyuda());
-     
+      /* this.juegoService.registrarJuego("/juegos/registrar",this.nuevoJuego.nombreJuego,this.nuevoJuego.verificar()); */
 
     }
-    console.info("numero Secreto:",this.nuevoJuego.gano);  
+    /* console.info("numero Secreto:",this.nuevoJuego.gano); */  
   }  
 
   MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
@@ -83,10 +91,8 @@ export class AdivinaElNumeroComponent implements OnInit {
       x.className = x.className.replace("show", "");
       modelo.ocultarVerificar=false;
      }, 3000);
-    console.info("objeto",x);
-  
+    /* console.info("objeto",x); */
    }  
-  ngOnInit() {
-  }
+
 
 }

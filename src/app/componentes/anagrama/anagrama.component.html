@@ -1,3 +1,64 @@
-<p>
-  anagrama works!
-</p>
+<div class="register">
+  <div class="game">
+    <div class="buttons">
+      <button class="btn btn-primary" id="new" (click)="nuevo()">Nuevo Juego</button>
+
+      <button class="btn btn-primary" id="new" (click)="ayuda()">Ayuda &nbsp;&nbsp;&nbsp;
+        <!-- Button trigger modal --><i data-toggle="modal" data-target="#exampleModal"
+          class="fas fa-question-circle icon"></i></button>
+      <button class="btn btn-primary" id="reveal" (click)="verificar()">Verificar</button>
+    </div>
+    <h5>Anagrama:</h5>
+    <input type="text" class="form-control" [(ngModel)]="anagrama" placeholder="Anagrama" readonly>
+    <h5>Ingrese la palabra correcta:</h5>
+    <input type="text" class="form-control" [(ngModel)]="this.palabraIngresada" placeholder="Ingrese Palabra">
+    <h3 [hidden]="!gano">GANOOO!</h3>
+    <h3 [hidden]="!perdio">Perdio!</h3>
+    <h3 *ngIf="this.null==true">Ingrese una palabra!</h3>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>La primera letra estara en mayuscula.<i class="far fa-smile-wink"></i></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">De acuerdo</button>
+        <button data-toggle="modal" data-target="#exampleModal2" type="button" class="btn btn-primary">Mas info</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal extra -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Son animales.<i class="fas fa-paw"></i></p> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">De acuerdo</button>
+      </div>
+    </div>
+  </div>
+</div>

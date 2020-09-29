@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadoresService } from '../../servicios/jugadores.service';
+import { PaisesService } from "../../servicios/paises.service";
 @Component({
   selector: 'app-jugadores-listado',
   templateUrl: './jugadores-listado.component.html',
@@ -14,34 +15,16 @@ export class JugadoresListadoComponent implements OnInit {
       this.miJugadoresServicio = serviceJugadores;
       
     }
-    
-
 
   ngOnInit() {
+    this.TraerTodos();
   }
-
 
   TraerTodos(){
-    //alert("totos");
-    /* this.miJugadoresServicio.traertodos('jugadores/','todos').then(data=>{
-      //console.info("jugadores listado",(data));
+   /*  this.miJugadoresServicio.traertodos('/usuario/listar','todos').then(data=>{
       this.listado= data;
-
     }) */
   }
-  TraerGanadores(){
-   /*  this.miJugadoresServicio.traertodos('jugadores/','ganadores').then(data=>{
-      //console.info("jugadores listado",(data));
-      this.listado= data;
-
-    }) */
-  }
-  TraerPerdedores(){
-    /* this.miJugadoresServicio.traertodos('jugadores/','perdedores').then(data=>{
-      //console.info("jugadores listado",(data));
-      this.listado= data;
-
-    }) */
-  }
+  
 
 }

@@ -1,0 +1,30 @@
+<div id="juego">
+  <h1>Buena suerte!</h1>
+  <div (click)="verificar(1)" id="papel" data-toggle="modal" data-target="modalpiedra"></div>
+  <div (click)="verificar(2)" id="tijera"></div>
+  <div (click)="verificar(0)" id="piedra"></div>
+</div>
+
+<div id="efecto" style="display:none" (click)="quitarEfecto()"><h1 id="icon">{{mensaje}}</h1> </div>
+
+<!-- Ejemplo Modal -->
+
+<!-- <div class="modal fade" id="modalpiedra">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dissmis="modal" aria-label="close">
+          &times;
+        </button>
+        <h5 class="modal-title">Modalworks!</h5>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium iure et sunt nemo aut porro expedita eaque
+        aperiam ad sit consectetur cum, odit dicta doloribus quia praesentium, rem corrupti debitis?
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dissmis="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div> -->

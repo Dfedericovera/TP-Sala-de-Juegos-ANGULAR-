@@ -1,29 +1,17 @@
-<ul class="nav nav-pills nav-justified">
-  <li class="active"><a routerLink="/Principal">Ir a inicio</a></li>
-  <li><a (click)="TraerTodos()">Todos los jugadores</a></li>
-  <li><a (click)="TraerGanadores()">Los ganadores</a></li>
-  <li><a (click)="TraerPerdedores()">Los perdedores</a></li>
-</ul>
+<app-cabecera></app-cabecera>
 
 
-
-<table class="table table-condensed">
+<table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th>usuario</th>
-      <th>cuit</th>
-      <th>sexo</th>
-      <th>gano</th>
+      <th>Alias</th>
+      <th>Correo</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let jugador of listado" >
-      <td>{{jugador.usuario}} </td>
-      <td>{{jugador.cuit}} </td> 
-      <td>{{jugador.sexo | sexo| uppercase}} </td> 
-      <td>{{jugador.gano}} </td> 
-      
-    </tr>
-   
+    <tr *ngFor="let jugadores of listado" >
+      <td>{{jugadores.alias}} </td>
+      <td>{{jugadores.correo}} </td> 
+    </tr>   
   </tbody>
 </table>
