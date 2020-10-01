@@ -1,1 +1,11 @@
-<p>memotest works!</p>
+<div class="container">
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm text-white bg-transparent border border-primary" *ngFor="let card of cards">
+            <div class="imagenFondo">
+                <div class="card-body">
+                    <img src="{{card.img}}" alt="" class="responsive" *ngIf="card.isTouched">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

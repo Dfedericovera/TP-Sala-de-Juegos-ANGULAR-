@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+// folder,filename,extension,repeat,x-pos,y-pos
+@mixin background($imgpath,$position: center,$repeat: repeat) 
+       background: 
+           image: url($imgpath)
+           position: $position
+           repeat: $repeat
+       
+
+
+body
+    height:100%
+    margin:0
+    @include background('./assets/imagenes/fondo.jpg')
+    /** background-image:url(./assets/imagenes/fondo.jpg) **/
+    height:100%
+
+html
+    height:100%
+    margin:0
+    

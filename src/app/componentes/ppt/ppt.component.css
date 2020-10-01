@@ -1,5 +1,5 @@
 #juego {
-    background: url(../../../assets/imagenes/ppt.jpg) 0 0 no-repeat;
+    background: url(../../../assets/imagenes/ppt1.jpg) 0 0 no-repeat;
     padding: 0;
     width: 800px;
     min-height: 384px;
@@ -7,9 +7,10 @@
 }
 
 #juego h1{
+    color: white;
     text-align: center;
     margin: 1em;
-}
+} 
 
 
 #piedra,

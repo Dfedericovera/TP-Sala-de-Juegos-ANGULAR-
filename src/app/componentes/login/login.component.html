@@ -21,7 +21,7 @@
     </div>
   </div>
 </div-->
- <div class="container" >
+<!--  <div class="container" >
   <div class="jumbotron" style="padding:50px;">
     <form action="return true;">
       <div class="imgcontainer">
@@ -53,5 +53,26 @@
       </div>
      
     </form>
+  </div>
+</div> -->
+
+
+<!-- NUEVO -->
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+      <div class="fadeIn first">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" id="icon" alt="User Icon" />
+      </div>
+      <form #f="ngForm">
+          <input type="text"  class="fadeIn second"  [(ngModel)]="usuario" name="usuario"  placeholder="Usuario" [ngModelOptions]="{standalone: true}">
+          <input type="password"class="fadeIn third"  [(ngModel)]="contrasena" name="contrasena"  placeholder="Contrasena" [ngModelOptions]="{standalone: true}">
+          <input type="submit" class="btn btn-warning fadeIn fourth" value="Ingresar como admin" (click)="IngresarComoAdmin(f)" >
+          <!-- <button class="btn btn-warning btn-lg btn-block fadeIn fourth" style="display: block;" (click)="IngresarComoAdmin(f)">Ingresar como admin</button> -->
+          <input type="submit" class="fadeIn fourth" value="Entrar" (click)="login()" routerLink="/bienvenidos">
+      </form>
+      <div id="formFooter">
+          <a class="underlineHover" href="/error">Olvidaste la contraseña?</a>
+          
+      </div>
   </div>
 </div>
