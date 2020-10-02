@@ -1,9 +1,9 @@
 <div class="container">
-    <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 shadow-sm text-white bg-transparent border border-primary" *ngFor="let card of cards">
-            <div class="imagenFondo">
-                <div class="card-body">
-                    <img src="{{card.img}}" alt="" class="responsive" *ngIf="card.isTouched">
+    <div class="card-deck mb-3 text-center row">
+        <div class="card mb-3 shadow-sm text-white bg-transparent" *ngFor="let card of cards" >
+            <div class="imagenFondo border border-primary" [ngClass]="!card.isTouched ? 'cardblank' : 'imagenFondo'" #card [@cardState]="!card.isTouched ? 'spin' : 'blank'">
+                <div class="card-body" >
+                    <img src="{{card.img}}" alt="" class="responsive"  (click)="toggle(card)" [ngClass]="!card.isTouched ? 'showCharacter' : ''">
                 </div>
             </div>
         </div>

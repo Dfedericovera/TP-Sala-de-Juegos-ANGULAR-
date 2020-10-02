@@ -25,13 +25,13 @@
   .container {
 	max-width: 960px;
   }
-  
+  /* 
   .pricing-header {
 	max-width: 700px;
-  }
+  } */
   
   .card-deck .card {
-	min-width: 220px;
+	min-width: 125px;
   }
   .responsive {
 	width: 100%;
@@ -39,5 +39,14 @@
   }
   .imagenFondo{
 	background-image: url(../../../assets/imagenes/cartaMemotest.jpg);
-
+  }
+  .card-body{
+	  cursor: pointer;
+  }
+  .cardblank{
+    background-image: url(../../../assets/imagenes/svg/acertijo.jfif);
+    background-size: 100% 100%;
+  }
+  .showCharacter{
+    opacity: 0;
   }

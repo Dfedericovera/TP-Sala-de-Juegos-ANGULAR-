@@ -52,6 +52,8 @@ import { InputJugadoresComponent } from './componentes/input-jugadores/input-jug
 import { SexoPipe } from './pipes/sexo.pipe';
 import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { CaraosecaComponent } from './componentes/caraoseca/caraoseca.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -83,6 +85,7 @@ import { CaraosecaComponent } from './componentes/caraoseca/caraoseca.component'
     BrowserModule,
     FormsModule,
     RuteandoModule,
+    BrowserAnimationsModule,
 /*     HttpModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
