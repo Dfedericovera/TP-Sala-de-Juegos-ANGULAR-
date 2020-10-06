@@ -1,9 +1,34 @@
-<div class="container">
+<div class="container" *ngIf='isPlaying'>
+    <div class="text-center text-white">
+        <h5>Tu tiempo es: {{minutos}} min {{segundos}} seg</h5>        
+    </div>
     <div class="card-deck mb-3 text-center row">
-        <div class="card mb-3 shadow-sm text-white bg-transparent" *ngFor="let card of cards" >
-            <div class="imagenFondo border border-primary" [ngClass]="!card.isTouched ? 'cardblank' : 'imagenFondo'" #card [@cardState]="!card.isTouched ? 'spin' : 'blank'">
-                <div class="card-body" >
-                    <img src="{{card.img}}" alt="" class="responsive"  (click)="toggle(card)" [ngClass]="!card.isTouched ? 'showCharacter' : ''">
+        <div class="card mb-3 shadow-sm text-white bg-transparent" *ngFor="let card of memotest.cards">
+            <div class="imagenFondo border border-primary" [ngClass]="!card.isTouched ? 'cardblank' : 'imagenFondo'"
+                #card [@cardState]="!card.isTouched ? 'spin' : 'blank'">
+                <div class="card-body">
+                    <img src="{{card.img}}" alt="" class="responsive" (click)="toggle(card)"
+                        [ngClass]="!card.isTouched ? 'showCharacter' : ''">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf='!isPlaying' class="menu">
+    <div class="container">
+        <div class="card-deck mb-3 text-center  ">
+            <div class="card mb-4 shadow-sm text-white bg-transparent border border-primary">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Memotest</h4>
+                    
+                </div>
+                <div class="card-body">
+                    <p *ngIf="!memotest.gano">Juego de memoria, comprueba tu memoria visual</p>
+                    <p *ngIf="!memotest.gano">Tomaremos tu tiempo</p>
+                    <p *ngIf="memotest.gano">Ganaste! tu tiempo fue: {{minutos}} min {{segundos}} seg</p>
+                    <!-- <img src="../../../assets/imagenes/listado.jpg" alt="" class="responsive"> -->
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary"
+                        (click)="jugar()">Jugar</button>
                 </div>
             </div>
         </div>

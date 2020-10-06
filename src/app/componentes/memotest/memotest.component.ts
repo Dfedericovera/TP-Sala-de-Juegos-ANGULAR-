@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import {  trigger,  state,  style,  animate,  transition } from '@angular/animations';
+import { JuegoMemotest } from "../../clases/juego-memotest";
 
 
 @Component({
@@ -14,10 +9,10 @@ import {
   styleUrls: ['./memotest.component.scss'],
   animations: [
     trigger('cardState', [
-      state('spin',   style({
+      state('spin', style({
         transform: 'rotateY(360deg) rotateZ(0deg)',
       })),
-      state('blank',   style({
+      state('blank', style({
       })),
       transition('* => *', animate('500ms ease')),
     ])
@@ -25,105 +20,72 @@ import {
 })
 export class MemotestComponent implements OnInit {
 
-  cards = [
-    {
-      name: "batman",
-      img: "../../../assets/imagenes/svg/batman.svg",
-      id: 1,
-      isTouched: false,
-    },
-    {
-      name: "ciclope",
-      img: "../../../assets/imagenes/svg/ciclope.svg",
-      id: 2,
-      isTouched: false,
-    },
-    {
-      name: "flash",
-      img: "../../../assets/imagenes/svg/flash.svg",
-      id: 3,
-      isTouched: false,
-    },
-    {
-      name: "freddy",
-      img: "../../../assets/imagenes/svg/freddy.svg",
-      id: 4,
-      isTouched: false,
-    },
-    {
-      name: "hulk",
-      img: "../../../assets/imagenes/svg/hulk.svg",
-      id: 5,
-      isTouched: false,
-    },
-    {
-      name: "jason",
-      img: "../../../assets/imagenes/svg/jason.svg",
-      id: 6,
-      isTouched: false,
-    },
-    {
-      name: "luigi",
-      img: "../../../assets/imagenes/svg/luigi.svg",
-      id: 7,
-      isTouched: false,
-    },
-    {
-      name: "mario",
-      img: "../../../assets/imagenes/svg/mario.svg",
-      id: 8,
-      isTouched: false,
-    },
-    {
-      name: "robocop",
-      img: "../../../assets/imagenes/svg/robocop.svg",
-      id: 9,
-      isTouched: false,
-    },
-    {
-      name: "superman",
-      img: "../../../assets/imagenes/svg/superman.svg",
-      id: 10,
-      isTouched: false,
-    },
-    {
-      name: "thor",
-      img: "../../../assets/imagenes/svg/thor.svg",
-      id: 11,
-      isTouched: false,
-    },
-    {
-      name: "wolverine",
-      img: "../../../assets/imagenes/svg/wolverine.svg",
-      id: 12,
-      isTouched: false,
-    },
-  ];
 
+  memotest: JuegoMemotest;
+  isPlaying:boolean = false;
+  segundos:number=0;
+  minutos:number=0;
+  contador:any;
   constructor() {
-    var clone  = new Array();     
-    this.cards.forEach( card =>{
-      clone.push(JSON.parse(JSON.stringify(card))
-
-      );
-    });
-    clone.forEach(c =>{
-      c.name = "duplicate";
-    })
-    this.cards= this.cards.concat(clone);
-    this.cards.sort(function() {return Math.random()-0.5});
-    console.log(this.cards);
-   }
+    this.memotest = new JuegoMemotest();
+    console.log(this.memotest.cards);
+  }
 
   ngOnInit(): void {
   }
 
   toggle(card) {
-    console.log(card);
-    card.isTouched = !card.isTouched;
+    //if it is not discovered, discover it. If it is discovered dont do anything else
+    if (!card.isTouched) {
+      card.isTouched = !card.isTouched;
+      //verificate
+      this.verificarCarta(card);
+    }
+    else {
+      return 0;
+    }
   }
 
+  verificarCarta(card) {
+    setTimeout(t => {
+      if (this.memotest.cartaSeleccionada && this.memotest.cartaSeleccionada.name != card.name) {
+        if (this.memotest.verificarCarta(card)) {
+          //keep them visible
+          //and verificar si gano
+          this.memotest.cartaSeleccionada = null;
+          this.verificarJuego();
+        } else {
+          card.isTouched = false;
+          this.memotest.cartaSeleccionada.isTouched = false;
+          this.memotest.cartaSeleccionada = null;
+        }
+      }
+      else {
+        this.memotest.cartaSeleccionada = card;
+      }
+    }, 1000);
+  }
 
+  verificarJuego(){    
+    if(this.memotest.verificarJuego()){
+      clearInterval(this.contador);
+      this.isPlaying = false;      
+      this.memotest.gano = true;
+      //Guardar Datos!!!
+    }
+    
+  }
 
+  jugar(){
+    this.isPlaying = true;
+    this.contador = setInterval( t=>{
+      this.segundos += 1;
+      if(this.segundos == 60){
+        this.segundos = 0;
+        this.minutos+=1;
+      }
+      console.log('un segundo');
+    },1000);
+  }
 
 }
