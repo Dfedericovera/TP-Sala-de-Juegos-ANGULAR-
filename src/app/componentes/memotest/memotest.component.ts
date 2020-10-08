@@ -28,14 +28,13 @@ export class MemotestComponent implements OnInit {
   contador:any;
   constructor() {
     this.memotest = new JuegoMemotest();
-    console.log(this.memotest.cards);
   }
 
   ngOnInit(): void {
   }
 
   toggle(card) {
-    //if it is not discovered, discover it. If it is discovered dont do anything else
+    //if it is not discovered, discover it and verificate. If it is discovered dont do anything else
     if (!card.isTouched) {
       card.isTouched = !card.isTouched;
       //verificate
@@ -71,7 +70,8 @@ export class MemotestComponent implements OnInit {
       clearInterval(this.contador);
       this.isPlaying = false;      
       this.memotest.gano = true;
-      //Guardar Datos!!!
+      //Guardar Datos!!! y reiniciar el juego
+
     }
     
   }
@@ -84,8 +84,10 @@ export class MemotestComponent implements OnInit {
         this.segundos = 0;
         this.minutos+=1;
       }
-      console.log('un segundo');
     },1000);
+  }
+  reiniciar(){
+    
   }
 
 }

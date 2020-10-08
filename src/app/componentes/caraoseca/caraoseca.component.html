@@ -1,1 +1,83 @@
-<p>caraoseca works!</p>
+<div class="container" *ngIf='isPlaying'>
+    <div class="card-deck mb-3  row">
+        <div class="card mb-3 shadow-sm text-white bg-transparent ">
+            <div class="border border-danger">
+                <div class="card-body">
+                    <div class="text-white" style="height:250px; width: 250px;">
+                        <h3>Suerte</h3>
+                        <p>Esta es tu suerte,<br>
+                            Es el porcentaje que
+                            aumentará cada vez <br>
+                            que tires la moneda <br>
+                            guardaremos tu suerte <br>
+                            ese sera el record.
+                        </p>
+                        <p>Suerte: {{suerte}}</p>
+                    </div>
+                    <div class="progress vertical d-flex flex-row-reverse"
+                        style="position: absolute; right: 0; top: 10px;">
+                        <div role="progressbar" #progressbar class="progress-bar "><span class="sr-only">Primary</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" (click)='lanzarMoneda(progressbar)' (click)="verificar(card)">
+                LANZAR MONEDA</button>
+        </div>
+        <div class="card mb-3 shadow-sm text-white bg-transparent">
+
+            <div class="imagenFondo border border-primary" #card [@cardState]="!card.isTouched ? 'spin' : 'blank'">
+                <!-- [ngClass]="!card.isTouched ? 'cardblank' : 'imagenFondo'" -->
+                <div class="card-body">
+                    <img src="{{caraoceca.monedas[0].img}}" alt="" class="responsive">
+                    <!-- [ngClass]="!card.isTouched ? 'showCharacter' : ''" -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf='!isPlaying' class="menu">
+    <div class="container">
+        <div class="card-deck mb-3 text-center  ">
+
+            <div class="card mb-4 shadow-sm text-white bg-transparent border border-primary">
+
+
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Cara o Ceca</h4>
+
+                </div>
+
+                <div class="card-body">
+                    <p *ngIf="!caraoceca.gano">Probá tu suerte, elegí cara o ceca</p>
+                    <div class="row">
+                        <div class="imagenFondo border col-sm rounded-circle" #card 
+                        [ngClass]="caraoceca.monedas[0].isTouched ? 'border-danger' : 'border-dark'">
+                            <div class="card-body pointer">
+                                <img class="pointer" src="{{caraoceca.monedas[0].img}}" alt="" class="responsive"
+                                    (click)='seleccionarCara(0)'>
+                            </div>
+                        </div>
+                        <div class="imagenFondo border col-sm rounded-circle" #card
+                        [ngClass]="caraoceca.monedas[1].isTouched ? 'border-danger' : 'border-dark'">
+                            <div class="card-body pointer">
+                                <img class="pointer" src="{{caraoceca.monedas[1].img}}" alt="" class="responsive"
+                                    (click)='seleccionarCara(1)'>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p *ngIf="!caraoceca.gano">La probabilidad de que ganes empezará en 1% <br> Crees lograrlo en el primer intento? <br> cruza los dedos!</p>
+                    <p *ngIf="caraoceca.gano">Ganaste! tu tiempo fue: </p>
+                    <!-- <img src="../../../assets/imagenes/listado.jpg" alt="" class="responsive"> -->
+                    <button *ngIf="!caraoceca.gano" type="button"
+                        class="btn btn-lg btn-block btn-outline-primary"(click)="jugar()">Jugar</button>
+                    <button *ngIf="caraoceca.gano" type="button" class="btn btn-lg btn-block btn-outline-primary"
+                        (click)="reiniciar()">Jugar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
