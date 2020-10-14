@@ -26,7 +26,7 @@ export class JuegoCaraoceca extends Juego {
     }
 
     mezclarMonedas(){
-        this.monedas.sort(function () { return Math.random() - 0.5 });
+        /* this.monedas.sort(function () { return Math.random() - 0.5 }); */
     }
 
     elegirMoneda(moneda){

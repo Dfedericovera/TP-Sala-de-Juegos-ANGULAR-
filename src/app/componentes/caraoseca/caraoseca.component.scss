@@ -45,10 +45,24 @@
   }
   
   
-  .cardblank{
+  .moneda{
+    background-image: url(../../../assets/imagenes/cartaMemotest.jpg);
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+  }
+  #moneda{
+    display:block;
+    margin:auto;
+  }
+
+  .spin{
     background-image: url(../../../assets/imagenes/svg/acertijo.jfif);
     background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
   }
+
   .showCharacter{
     opacity: 0;
   }
@@ -61,7 +75,7 @@
 
   }
 
-
+/* PROGRESS BAR */
   .demo-preview {
     padding-top: 100px;
     padding-bottom: 10px;

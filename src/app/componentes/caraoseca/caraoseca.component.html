@@ -21,22 +21,21 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" (click)='lanzarMoneda(progressbar)' (click)="verificar(card)">
+            <button type="button" class="btn btn-primary" (click)='lanzarMoneda(progressbar)'>
                 LANZAR MONEDA</button>
         </div>
         <div class="card mb-3 shadow-sm text-white bg-transparent">
 
-            <div class="imagenFondo border border-primary" #card [@cardState]="!card.isTouched ? 'spin' : 'blank'">
-                <!-- [ngClass]="!card.isTouched ? 'cardblank' : 'imagenFondo'" -->
+            <div class="border border-primary" [@cardState]="lanzoMoneda ? 'spin' : 'blank'"
+                [ngClass]="{'spin': isSpining, 'moneda': !isSpining}">
                 <div class="card-body">
-                    <img src="{{caraoceca.monedas[0].img}}" alt="" class="responsive">
-                    <!-- [ngClass]="!card.isTouched ? 'showCharacter' : ''" -->
+                    <img *ngIf="!isSpining" id="moneda" src="{{monedaActual}}" alt="">
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<!-- MENU -->
 <div *ngIf='!isPlaying' class="menu">
     <div class="container">
         <div class="card-deck mb-3 text-center  ">
@@ -52,15 +51,15 @@
                 <div class="card-body">
                     <p *ngIf="!caraoceca.gano">Probá tu suerte, elegí cara o ceca</p>
                     <div class="row">
-                        <div class="imagenFondo border col-sm rounded-circle" #card 
-                        [ngClass]="caraoceca.monedas[0].isTouched ? 'border-danger' : 'border-dark'">
+                        <div class="imagenFondo border col-sm rounded-circle" #card
+                            [ngClass]="caraoceca.monedas[0].isTouched ? 'border-danger' : 'border-dark'">
                             <div class="card-body pointer">
                                 <img class="pointer" src="{{caraoceca.monedas[0].img}}" alt="" class="responsive"
                                     (click)='seleccionarCara(0)'>
                             </div>
                         </div>
                         <div class="imagenFondo border col-sm rounded-circle" #card
-                        [ngClass]="caraoceca.monedas[1].isTouched ? 'border-danger' : 'border-dark'">
+                            [ngClass]="caraoceca.monedas[1].isTouched ? 'border-danger' : 'border-dark'">
                             <div class="card-body pointer">
                                 <img class="pointer" src="{{caraoceca.monedas[1].img}}" alt="" class="responsive"
                                     (click)='seleccionarCara(1)'>
@@ -69,13 +68,14 @@
                     </div>
 
 
-                    <p *ngIf="!caraoceca.gano">La probabilidad de que ganes empezará en 1% <br> Crees lograrlo en el primer intento? <br> cruza los dedos!</p>
-                    <p *ngIf="caraoceca.gano">Ganaste! tu tiempo fue: </p>
+                    <p *ngIf="!caraoceca.gano">La probabilidad de que ganes empezará en 1% <br> Crees lograrlo en el
+                        primer intento? <br> cruza los dedos!</p>
+                    <p *ngIf="caraoceca.gano">Ganaste! con una probabilidad de: {{this.suerte}}% </p>
                     <!-- <img src="../../../assets/imagenes/listado.jpg" alt="" class="responsive"> -->
-                    <button *ngIf="!caraoceca.gano" type="button"
-                        class="btn btn-lg btn-block btn-outline-primary"(click)="jugar()">Jugar</button>
+                    <button *ngIf="!caraoceca.gano" type="button" class="btn btn-lg btn-block btn-outline-primary"
+                        [disabled]="!caraoceca.monedaSeleccionada" (click)="jugar()">Jugar</button>
                     <button *ngIf="caraoceca.gano" type="button" class="btn btn-lg btn-block btn-outline-primary"
-                        (click)="reiniciar()">Jugar</button>
+                        [disabled]="!caraoceca.monedaSeleccionada" (click)="reiniciar()">Jugar</button>
                 </div>
             </div>
         </div>
