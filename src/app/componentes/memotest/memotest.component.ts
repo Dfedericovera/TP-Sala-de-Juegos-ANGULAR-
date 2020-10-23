@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {  trigger,  state,  style,  animate,  transition } from '@angular/animations';
 import { JuegoMemotest } from "../../clases/juego-memotest";
+import { AuthService } from 'src/app/servicios/auth.service';
+import { JuegoService } from 'src/app/servicios/juego.service';
+import { JugadoresService } from 'src/app/servicios/jugadores.service';
 
 
 @Component({
@@ -26,8 +29,13 @@ export class MemotestComponent implements OnInit {
   segundos:number=0;
   minutos:number=0;
   contador:any;
-  constructor() {
-    this.memotest = new JuegoMemotest();
+
+  constructor(
+    private authService:AuthService,
+    private jugadoresService:JugadoresService,
+    private juegoService:JuegoService
+    ) {
+    this.memotest = new JuegoMemotest(this.jugadoresService.jugador);
   }
 
   ngOnInit(): void {
@@ -68,12 +76,14 @@ export class MemotestComponent implements OnInit {
   verificarJuego(){    
     if(this.memotest.verificarJuego()){
       clearInterval(this.contador);
-      this.isPlaying = false;      
+      this.isPlaying = false;
       this.memotest.gano = true;
+      this.memotest.tiempo = this.minutos+'min '+this.segundos+'seg';
       //Guardar Datos!!! y reiniciar el juego
-
+      this.juegoService.addJuego(this.memotest).then(()=>{
+        console.log('Juego guardado----');
+      })
     }
-    
   }
 
   jugar(){
@@ -87,7 +97,7 @@ export class MemotestComponent implements OnInit {
     },1000);
   }
   reiniciar(){
-    
+    this.memotest = new JuegoMemotest(this.jugadoresService.jugador);
   }
 
 }

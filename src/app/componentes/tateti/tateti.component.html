@@ -4,13 +4,10 @@
   <label for="checkTablero">
     <h5>Mostrar Tablero</h5>
   </label>
-  <!-- checkbox para mostrar el tablero --> 
-  <!-- <bSwitch [(ngModel)]="toogle" [switch-handle-width]="60"[switch-off-color]="'danger'" [switch-off-text]="'Ocultar'" [switch-on-text]="'Mostrar'"
-    [switch-animate]="true" [switch-size]="'small'" [switch-base-class]="'bootstrap-switch'"(changeState)="onChange($event)">
-  </bSwitch> -->
+
 
 </div>
-<div id="body" class="body" hidden>
+<div id="body" class="body">
   <div class="text-center" id="box">
     <header>
       <h1>Suerte!</h1>
@@ -29,12 +26,14 @@
     </ul>
     <div class="clearfix"></div>
     <footer>
-      <button id="reset" (click)="reset()">Reset</button>
+      <button id="reset" (click)="reset()">Resetiar</button>
     </footer>
   </div>
 </div>
 
-<div id="efecto" style="display:none" (click)="quitarEfecto()"><h1 id="icon">{{mensaje}}</h1> </div>
+<div id="efecto" style="display:none; color: white; text-align: center;" (click)="quitarEfecto()">
+  <h1 style="position: absolute;  top: 50%;  left: 40%;" id="icon">{{mensaje}}</h1>
+</div>
 
 <div id="modal-mensajes" class="mensaje" hidden>
   <div class="modal-dialog" role="document">
@@ -46,6 +45,6 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" data-jugar data-dismiss="modal">Jugar</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>

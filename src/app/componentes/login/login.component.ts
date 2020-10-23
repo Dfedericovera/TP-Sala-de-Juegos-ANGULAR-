@@ -1,91 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
-import { Subscription } from "rxjs";/* 
-import {TimerObservable} from "rxjs/observable/TimerObservable"; */
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { JugadoresService } from 'src/app/servicios/jugadores.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
-
-  private subscription: Subscription;
-  usuario = '';
-  clave = '';
-  progreso: number;
-  progresoMensaje = "esperando...";
-  logeando = true;
-  ProgresoDeAncho: string;
-
-  clase = "progress-bar progress-bar-info progress-bar-striped ";
-  
+export class LoginComponent {
+  usuario: string;
+  clave: string;
   contrasena: any;
-  IngresarComoAdmin(f: NgForm) {
-    this.usuario = "Admin";
-    this.contrasena = "admin";
+  loginForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private jugadoresService:JugadoresService,
+  ) {
+    this.createForm();
+  }
+  createForm() {
+    this.loginForm = this.formBuilder.group({
+      correo: ['', [Validators.required, Validators.email]],
+      clave: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+  IngresarComoAdmin() {
+    this.loginForm.get('correo').setValue('admin@admin.com');
+    this.loginForm.get('clave').setValue('111111');
   }
 
   login() {
-
-  }
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) {
-    this.progreso = 0;
-    this.ProgresoDeAncho = "0%";
-
-  }
-
-  ngOnInit() {
-  }
-
-  Entrar() {
-    if (this.usuario === 'admin' && this.clave === 'admin') {
-      this.router.navigate(['/Principal']);
+    if (this.loginForm.invalid) {
+      this.markFormGroupTouched(this.loginForm);
     }
-  }
-  /*   MoverBarraDeProgreso() {
-      
-      this.logeando=false;
-      this.clase="progress-bar progress-bar-danger progress-bar-striped active";
-      this.progresoMensaje="NSA spy..."; 
-      let timer = TimerObservable.create(200, 50);
-      this.subscription = timer.subscribe(t => {
-        console.log("inicio");
-        this.progreso=this.progreso+1;
-        this.ProgresoDeAncho=this.progreso+20+"%";
-        switch (this.progreso) {
-          case 15:
-          this.clase="progress-bar progress-bar-warning progress-bar-striped active";
-          this.progresoMensaje="Verificando ADN..."; 
-            break;
-          case 30:
-            this.clase="progress-bar progress-bar-Info progress-bar-striped active";
-            this.progresoMensaje="Adjustando encriptación.."; 
-            break;
-            case 60:
-            this.clase="progress-bar progress-bar-success progress-bar-striped active";
-            this.progresoMensaje="Recompilando Info del dispositivo..";
-            break;
-            case 75:
-            this.clase="progress-bar progress-bar-success progress-bar-striped active";
-            this.progresoMensaje="Recompilando claves facebook, gmail, chats..";
-            break;
-            case 85:
-            this.clase="progress-bar progress-bar-success progress-bar-striped active";
-            this.progresoMensaje="Instalando KeyLogger..";
-            break;
-            
-          case 100:
-            console.log("final");
-            this.subscription.unsubscribe();
-            this.Entrar();
-            break;
-        }     
+    this.authService
+      .login(
+        this.loginForm.get('correo').value,
+        this.loginForm.get('clave').value
+      )
+      .then((data) => {
+        console.log('logeado exitosamente');
+        this.jugadoresService.getJugador(this.loginForm.get('correo').value);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    } */
+  }
 
+  private markFormGroupTouched(formGroup: FormGroup) {
+    (<any>Object).values(formGroup.controls).forEach((control) => {
+      control.markAsTouched();
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
 }

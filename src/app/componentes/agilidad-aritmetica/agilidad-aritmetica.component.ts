@@ -1,43 +1,43 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { JuegoAgilidad } from '../../clases/juego-agilidad';
-import { Subscription } from "rxjs";
-import { JuegoServiceService } from "../../servicios/juego-service.service";
+import { JuegoService } from '../../servicios/juego.service';
+import { AuthService } from '../../servicios/auth.service';
+import { JugadoresService } from 'src/app/servicios/jugadores.service';
 
 @Component({
   selector: 'app-agilidad-aritmetica',
   templateUrl: './agilidad-aritmetica.component.html',
-  styleUrls: ['./agilidad-aritmetica.component.css']
+  styleUrls: ['./agilidad-aritmetica.component.css'],
 })
 export class AgilidadAritmeticaComponent implements OnInit {
-
   @Output()
-
   enviarJuego: EventEmitter<any> = new EventEmitter<any>();
   nuevoJuego: JuegoAgilidad;
   ocultarVerificar: boolean;
   Tiempo: number;
   repetidor: any;
-  gano:Boolean;
-  perdio:boolean;
-  private subscription: Subscription;
+  gano: Boolean;
+  perdio: boolean;
 
-  ngOnInit() {
-  }
-  constructor(private juegoService:JuegoServiceService) {
-    this.ocultarVerificar = true;    
-    this.nuevoJuego = new JuegoAgilidad();/* 'Agilidad',false, */
-    console.info("Inicio agilidad");
+  ngOnInit() {}
+  constructor(
+    private juegoService: JuegoService,
+    private jugadoresService:JugadoresService,
+    private authService: AuthService
+  ) {
+    console.log(this.authService.user);
+    this.ocultarVerificar = true;
+    this.nuevoJuego = new JuegoAgilidad(false);
+    console.info('Inicio agilidad');
   }
   
   NuevoJuego() {
     this.ocultarVerificar = false;
-    this.perdio=false;
+    this.perdio = false;
     this.nuevoJuego.generarnumero();
     this.Tiempo = 10;
     this.repetidor = setInterval(() => {
-
       this.Tiempo--;
-     /*  console.log("llego", this.Tiempo); */
       if (this.Tiempo == 0) {
         clearInterval(this.repetidor);
         this.verificar();
@@ -45,19 +45,17 @@ export class AgilidadAritmeticaComponent implements OnInit {
       }
     }, 900);
     this.nuevoJuego.numeroIngresado = 0;
-    this.gano=false;
+    this.gano = false;
   }
-
 
   verificar() {
     this.ocultarVerificar = true;
-    this.gano= this.nuevoJuego.verificar();
-    this.perdio=!this.gano;
-    //this.ocultarVerificar=false;
+    this.gano = this.nuevoJuego.verificar();
+    this.perdio = !this.gano;
     clearInterval(this.repetidor);
-    
-   /*  this.juegoService.registrarJuego("/juegos/registrar",this.nuevoJuego.nombreJuego,this.nuevoJuego.verificar()); */
 
+    this.juegoService.addJuego(this.nuevoJuego).then((data) => {
+      console.log(data);
+    });
   }
-
 }

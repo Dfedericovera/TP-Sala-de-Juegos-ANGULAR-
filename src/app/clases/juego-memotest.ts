@@ -1,9 +1,9 @@
 import { Juego } from '../clases/juego'
+import { Jugador } from './jugador';
 
 export class JuegoMemotest extends Juego {
-    public verificar(): boolean {
-        throw new Error('Method not implemented.');
-    }
+
+    tiempo:any;
 
     cartaSeleccionada: any;
     cards = [
@@ -82,8 +82,8 @@ export class JuegoMemotest extends Juego {
         },
     ];
 
-    constructor() {
-        super();
+    constructor(jugador?:Jugador) {
+        super(null,'Memotest',null,jugador);
         this.duplicarCartas();
     }
 

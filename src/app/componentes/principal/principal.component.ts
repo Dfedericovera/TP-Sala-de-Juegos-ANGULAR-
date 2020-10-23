@@ -1,21 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-
-
+import { Component } from '@angular/core';
+import { JugadoresService } from 'src/app/servicios/jugadores.service';
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.css']
+  styleUrls: ['./principal.component.css'],
 })
-export class PrincipalComponent implements OnInit {
- public status: any = {
+export class PrincipalComponent {
+  public status: any = {
     isFirstOpen: true,
-    isFirstDisabled: false
+    isFirstDisabled: false,
   };
-  constructor() {  }
-
-  ngOnInit() {
-  }
-
- 
-
+  constructor(private jugadoresService:JugadoresService) {}
 }

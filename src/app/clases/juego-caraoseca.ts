@@ -1,6 +1,9 @@
 import { Juego } from '../clases/juego'
+import { Jugador } from './jugador';
 
 export class JuegoCaraoceca extends Juego {
+
+    suerte:any;
     public verificar(): boolean {
         throw new Error('Method not implemented.');
     }
@@ -21,8 +24,8 @@ export class JuegoCaraoceca extends Juego {
     ];
     public monedaSeleccionada:any;
 
-    constructor() {
-        super();
+    constructor(jugador?:Jugador) {
+        super(null,'Cara o Ceca',false,jugador);
     }
 
     mezclarMonedas(){

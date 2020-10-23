@@ -29,7 +29,7 @@ import { CaraosecaComponent } from '../componentes/caraoseca/caraoseca.component
 // declaro donde quiero que se dirija
 const MiRuteo = [
 {path: 'Jugadores' , component: JugadoresListadoComponent},
-{path: '' , component: PrincipalComponent},
+{path: '' , component: LoginComponent},
 {path: 'Login' , component: LoginComponent},
 {path: 'QuienSoy' , component: QuienSoyComponent},
 {path: 'Registro' , component: RegistroComponent},

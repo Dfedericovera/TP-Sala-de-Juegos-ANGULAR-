@@ -1,7 +1,10 @@
 
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
+import { Jugador } from 'src/app/clases/jugador';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { JuegoService } from 'src/app/servicios/juego.service';
+import { JugadoresService } from 'src/app/servicios/jugadores.service';
 import { JuegoAdivina } from '../../clases/juego-adivina';
-import { JuegoServiceService } from "../../servicios/juego-service.service";
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -22,10 +25,14 @@ export class AdivinaElNumeroComponent implements OnInit {
 
 
  
-  constructor(private juegoService:JuegoServiceService) { 
-    this.nuevoJuego = new JuegoAdivina('Adivina');
-    /* console.info("numero Secreto:",this.nuevoJuego.numeroSecreto); */  
+  constructor(
+    private juegoService:JuegoService,
+    private authService:AuthService,
+    private jugadoresService:JugadoresService
+    ) { 
+    this.nuevoJuego = new JuegoAdivina();//cambiar esto
     this.ocultarVerificar=false;
+    this.jugadoresService.getJugador
   }
   generarnumero() {
     this.nuevoJuego.generarnumero();
@@ -41,8 +48,9 @@ export class AdivinaElNumeroComponent implements OnInit {
       this.enviarJuego.emit(this.nuevoJuego);
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
-      /* this.juegoService.registrarJuego("/juegos/registrar",this.nuevoJuego.nombreJuego,this.nuevoJuego.verificar()); */
-
+      this.juegoService.addJuego(this.nuevoJuego).then(data=>{
+        console.log('Response: ',data);
+      });
     }else{
 
       let mensaje:string;
@@ -71,10 +79,9 @@ export class AdivinaElNumeroComponent implements OnInit {
           break;
       }      
       this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda :"+this.nuevoJuego.retornarAyuda());
-      /* this.juegoService.registrarJuego("/juegos/registrar",this.nuevoJuego.nombreJuego,this.nuevoJuego.verificar()); */
-
-    }
-    /* console.info("numero Secreto:",this.nuevoJuego.gano); */  
+      this.juegoService.addJuego(this.nuevoJuego);
+      this.nuevoJuego = new JuegoAdivina(new Jugador(null,));//cambiaresto
+    }  
   }  
 
   MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {

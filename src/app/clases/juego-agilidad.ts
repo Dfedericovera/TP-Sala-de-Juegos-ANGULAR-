@@ -1,4 +1,5 @@
 import { Juego } from '../clases/juego';
+import { Jugador } from './jugador';
 
 export class JuegoAgilidad extends Juego {
     primerNumero: number;
@@ -8,8 +9,8 @@ export class JuegoAgilidad extends Juego {
     numeroIngresado:number;
     gano:boolean;
 
-    constructor(nombre?: string, gano?: boolean, jugador?: string) {
-        super("Agilidad Aritmetica", gano, jugador);
+    constructor(gano?: boolean, jugador?: Jugador) {
+        super(null,"Agilidad Aritmetica", gano, jugador);
     }
 
     public verificar() {

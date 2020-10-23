@@ -1,78 +1,38 @@
-<!--div style="margin: 20% auto; width: 30%;">
-  <div class="row">
-    <div class="col-lg-6">
-      Usuario
-    </div>
-    <div class="col-lg-6">
-      <input type="text"  [(ngModel)]="usuario">
-    </div>
-  </div>
-  <div class="row" style="margin-top: 5px">
-    <div class="col-lg-6">
-      Clave
-    </div>
-    <div class="col-lg-6">
-      <input type="password" [(ngModel)]="clave">
-    </div>
-  </div>
-  <div class="row" style="text-align: center; margin-top: 10px">
-    <div class="col-lg-12">
-      <button (click)="Entrar()" class="btn btn-info btn-lg" >Entrar</button>
-    </div>
-  </div>
-</div-->
-<!--  <div class="container" >
-  <div class="jumbotron" style="padding:50px;">
-    <form action="return true;">
-      <div class="imgcontainer">
-        <img src="./assets/imagenes/login.png" alt="Avatar" class="avatar" max-width="104" >
-      </div>
-
-      <div class="container">
-        <label><b>Usuario</b></label>
-        <input type="text" placeholder="Usuario"  [(ngModel)]="usuario"  name="uname" required>
-
-        <label><b>Clave</b></label>
-        <input type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
-            
-        <button *ngIf="logeando"   >Ingresar</button>
-       
-        <div *ngIf="!logeando" class="progress">
-            <div class="progress-bar progress-bar-info progress-bar-striped active" [class]="clase" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" [style.width]="ProgresoDeAncho" >
-              {{progresoMensaje}} - {{progreso}}%
-            </div>
-        </div>
-       
-        <input type="checkbox" checked="checked"> Recordar mis datos
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancelar</button>
-        <button type="button" class="aceptbtn" routerLink="/Registro" >Registrarse</button>
-        <span class="psw">Te olvidaste <a href="#">la clave?</a></span>
-      </div>
-     
-    </form>
-  </div>
-</div> -->
-
-
 <!-- NUEVO -->
 <div class="wrapper fadeInDown">
-  <div id="formContent">
-      <div class="fadeIn first">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" id="icon" alt="User Icon" />
-      </div>
-      <form #f="ngForm">
-          <input type="text"  class="fadeIn second"  [(ngModel)]="usuario" name="usuario"  placeholder="Usuario" [ngModelOptions]="{standalone: true}">
-          <input type="password"class="fadeIn third"  [(ngModel)]="contrasena" name="contrasena"  placeholder="Contrasena" [ngModelOptions]="{standalone: true}">
-          <input type="submit" class="btn btn-warning fadeIn fourth" value="Ingresar como admin" (click)="IngresarComoAdmin(f)" >
-          <!-- <button class="btn btn-warning btn-lg btn-block fadeIn fourth" style="display: block;" (click)="IngresarComoAdmin(f)">Ingresar como admin</button> -->
-          <input type="submit" class="fadeIn fourth" value="Entrar" (click)="login()" routerLink="/Principal">
-      </form>
-      <!-- <div id="formFooter">
-          <a class="underlineHover" href="/error">Olvidaste la contraseña?</a>
-          
-      </div> -->
-  </div>
+    <div id="formContent">
+        <div class="fadeIn first">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png"
+                id="icon" alt="User Icon" />
+        </div>
+        <form [formGroup]="loginForm">
+            <input type="text" class="fadeIn second" formControlName="correo" name="correo" placeholder="Correo" />
+            <div *ngIf="loginForm.controls['correo'].invalid && (loginForm.controls['correo'].dirty || loginForm.controls['correo'].touched)"
+                class="alert alert-danger fadeIn second">
+                <div *ngIf="loginForm.controls['correo'].errors.required">
+                    Correo es requerido.
+                </div>
+                <div *ngIf="loginForm.controls['correo'].errors.email">
+                    Ingrese un correo valido.
+                </div>
+            </div>
+            <input type="password" class="fadeIn third" formControlName="clave" name="clave" placeholder="Contrasena" />
+            <div *ngIf="  loginForm.controls['clave'].invalid &&  (loginForm.controls['clave'].dirty ||  loginForm.controls['clave'].touched)"
+            class="alert alert-danger fadeIn second">
+                <div *ngIf="loginForm.controls['clave'].errors.required">
+                    Campo Requerido.
+                </div>
+                <div *ngIf="loginForm.controls['clave'].errors.minlength">
+                    La clave debe tener mas de 6 caracteres.
+                </div>
+            </div>
+            <input type="submit" class="btn btn-warning fadeIn fourth" value="Ingresar como admin"
+                (click)="IngresarComoAdmin()" />
+            <!-- <button class="btn btn-warning btn-lg btn-block fadeIn fourth" style="display: block;" (click)="IngresarComoAdmin(f)">Ingresar como admin</button> -->
+            <input type="submit" class="fadeIn fourth" value="Entrar" (click)="login()" [disabled]="loginForm.controls.pristine || loginForm.controls.invalid"/>
+        </form>
+        <div id="formFooter">
+            <a class="underlineHover" href="/Registro">Registrarme</a>
+        </div>
+    </div>
 </div>

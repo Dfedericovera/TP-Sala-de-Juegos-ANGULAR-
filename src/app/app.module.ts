@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivina-el-numero.component';
 import { ListadoDeResultadosComponent } from './componentes/listado-de-resultados/listado-de-resultados.component';
@@ -12,11 +12,9 @@ import { LoginComponent } from './componentes/login/login.component';
 // agrego las clases para utilizar ruteo
 import { RouterModule, Routes } from '@angular/router';
 
-import { MiHttpService } from './servicios/mi-http/mi-http.service'; 
 import { PaisesService } from './servicios/paises.service'; 
 
 import { JugadoresService } from './servicios/jugadores.service'; 
-import{ ArchivosJugadoresService} from './servicios/archivos-jugadores.service'; 
 import { ErrorComponent } from './componentes/error/error.component';
 import { PrincipalComponent } from './componentes/principal/principal.component';
 import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/agilidad-aritmetica.component';
@@ -40,7 +38,7 @@ const MiRuteo = [{path: 'error' , component: ErrorComponent},
 */
 import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugadores-listado.component';
 
-import { JuegoServiceService } from './servicios/juego-service.service';
+import { JuegoService } from './servicios/juego.service';
 import { JuegosComponent } from './componentes/juegos/juegos.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { MenuCardComponent } from './componentes/menu-card/menu-card.component';
@@ -53,6 +51,11 @@ import { SexoPipe } from './pipes/sexo.pipe';
 import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { CaraosecaComponent } from './componentes/caraoseca/caraoseca.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+
 
 
 @NgModule({
@@ -83,7 +86,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     FormsModule,
+    ReactiveFormsModule,
     RuteandoModule,
     BrowserAnimationsModule,
 /*     HttpModule,
@@ -94,7 +101,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
   ],
-  providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
+  providers: [ JuegoService,PaisesService,JugadoresService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

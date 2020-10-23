@@ -1,9 +1,9 @@
 import { Juego } from '../clases/juego';
+import { Jugador } from './jugador';
 
 export class JuegoAnagrama extends Juego {
 
     value: string;
-    gano: boolean = null;
     palabraIngresada: string;
     palabra: string;
     anagrama: string = "";
@@ -16,8 +16,8 @@ export class JuegoAnagrama extends Juego {
         "Nutria", "Ñandú", "Orca", "Oso", "Pájaro", "Paloma", "Panda", "Pato", "Pelícano", "Perro", "Puercoespín", "Puma", "Rana", "Ratón", "Reno", "Rinoceronte", "Salamandra", "Sapo", "Serpiente", "Tapir", "Tejon",
         "Tiburón", "Tigre", "Topo", "Toro", "Tucán", "Vaca", "Vicuñas", "Zorrillo", "Zorro"];
 
-    constructor() {
-        super('Anagrama');
+    constructor(jugador?:Jugador) {
+        super(null,'Anagrama',false,jugador);
     }
 
     public verificar(): boolean {
@@ -34,7 +34,7 @@ export class JuegoAnagrama extends Juego {
         return this.gano;
     }
 
-    bill() {
+    build() {
         this.anagrama = "";
         var palabra = this.palabras[Math.floor(Math.random() * this.palabras.length)];
         this.respuesta = palabra.toLocaleLowerCase();

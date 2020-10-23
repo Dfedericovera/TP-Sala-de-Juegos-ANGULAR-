@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { JugadoresService } from 'src/app/servicios/jugadores.service';
 import { JuegoAnagrama } from "../../clases/juego-anagrama";
-import { JuegoServiceService } from "../../servicios/juego-service.service";
+import { JuegoService } from "../../servicios/juego.service";
 
 
 @Component({
@@ -21,12 +23,16 @@ export class AnagramaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private juegoService: JuegoServiceService) {
-    this.juego = new JuegoAnagrama();
+  constructor(
+    private juegoService: JuegoService,
+    private jugadoresService:JugadoresService,
+    private authService:AuthService
+    ) {
+    this.juego = new JuegoAnagrama(this.jugadoresService.jugador);
   }
 
   nuevo() {
-    this.juego.bill();
+    this.juego.build();
     this.anagrama = this.juego.anagrama;
     this.gano = null;
   }
@@ -45,6 +51,7 @@ export class AnagramaComponent implements OnInit {
     if (this.juego.gano != null && this.juego.respuesta != null) {
       this.gano = this.juego.gano;
       this.perdio = !this.gano;
+      this.juegoService.addJuego(this.juego);
       /* this.juegoService.registrarJuego("/juegos/registrar", this.juego.nombreJuego, this.juego.gano); */
       this.juego.gano=null;
     }

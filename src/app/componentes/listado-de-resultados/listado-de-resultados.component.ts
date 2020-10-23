@@ -1,6 +1,6 @@
 
 import { Component, OnInit , Input, EventEmitter} from '@angular/core';
-import { JuegoServiceService } from "../../servicios/juego-service.service";
+import { JuegoService } from "../../servicios/juego.service";
 
 @Component({
   selector: 'app-listado-de-resultados',
@@ -12,7 +12,7 @@ export class ListadoDeResultadosComponent implements OnInit {
  listado: Array<any>;
 
 
-  constructor(private juegosService:JuegoServiceService) {
+  constructor(private juegosService:JuegoService) {
    }
 
   ngOnInit() {
@@ -23,13 +23,15 @@ export class ListadoDeResultadosComponent implements OnInit {
   }
 
   TraerTodos(){
-    /* this.miJugadoresServicio.traertodos('/juegos/listar','todos').then(data=>{
-      console.info("jugadores listado",(data));
-      this.listado= data;
-    }) */
- /*    this.juegosService.traertodos('/juegos/listar','todos').then(data =>{
-      this.listado= data;
-    }) */
+    this.juegosService.getJuegos().subscribe(juegos=>{
+      this.listado = juegos.map(juego=>{
+        juego.hora = new Date(juego.fecha).toLocaleTimeString();
+        juego.fecha = new Date(juego.fecha).toLocaleDateString();
+        
+        return juego;
+      })
+      console.log(this.listado);
+    })
   }
   TraerGanadores(){
     /* this.juegosService.traertodos('/juegos/listar','ganadores').then(data=>{

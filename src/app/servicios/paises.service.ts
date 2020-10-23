@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MiHttpService } from './mi-http/mi-http.service'; 
 @Injectable()
 export class PaisesService {
 
-  constructor(public miHttp: MiHttpService ) { }
+  constructor( ) { }
 
 /* 
   public listar():Promise<Array<any>> {

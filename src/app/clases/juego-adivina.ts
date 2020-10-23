@@ -1,12 +1,11 @@
 import { Juego } from '../clases/juego'
+import { Jugador } from './jugador';
 
 export class JuegoAdivina extends  Juego {
     numeroSecreto: number = 0;
     numeroIngresado: number;
-    constructor(nombre?: string, gano?: boolean, jugador?:string) {
-        super("Adivina el número",gano,jugador);
-         
-      
+    constructor(jugador?:Jugador ) {
+        super(null,"Adivina el número",false,jugador);      
       }
     public verificar() {
         if (this.numeroIngresado == this.numeroSecreto) {
