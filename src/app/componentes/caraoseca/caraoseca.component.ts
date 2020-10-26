@@ -7,7 +7,6 @@ import {
   transition,
 } from '@angular/animations';
 import { JuegoCaraoceca } from '../../clases/juego-caraoseca';
-import { AuthService } from 'src/app/servicios/auth.service';
 import { JuegoService } from 'src/app/servicios/juego.service';
 import { JugadoresService } from 'src/app/servicios/jugadores.service';
 @Component({
@@ -43,7 +42,6 @@ export class CaraosecaComponent implements OnInit {
   isSpining = false; //si esta girando no muestro la moneda
   monedaActual: any; //moneda que se muestra
   constructor(
-    private authService: AuthService,
     private jugadoresService:JugadoresService,
     private juegoService: JuegoService
   ) {
@@ -51,7 +49,7 @@ export class CaraosecaComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  //devulve true si gano, false si perdio
+  /**devulve true si gano, false si perdio*/
   verificar() {
     /* Probabilidad segun la regla de Laplace P(A)= numeroDeCasosFavorablesaA/numerosDeCasosPosibles*/
     var gano = false;
@@ -79,9 +77,9 @@ export class CaraosecaComponent implements OnInit {
     if (this.verificar() == true) {
       //Gano
       this.caraoceca.suerte = this.suerte;
+      this.caraoceca.gano = true;
       this.monedaActual = this.caraoceca.monedaSeleccionada.img;
       setTimeout((t) => {
-        this.caraoceca.gano = true;
         this.isPlaying = false;
       }, 2000);
       this.juegoService.addJuego(this.caraoceca).then(()=>{
@@ -110,7 +108,7 @@ export class CaraosecaComponent implements OnInit {
     this.isPlaying = true;
   }
   reiniciar() {
-    this.suerte = 1;
+    this.suerte = 0;
     this.isPlaying = true;
   }
   seleccionarCara(indexMoneda) {

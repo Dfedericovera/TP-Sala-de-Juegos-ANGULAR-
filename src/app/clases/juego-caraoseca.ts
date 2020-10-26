@@ -25,7 +25,7 @@ export class JuegoCaraoceca extends Juego {
     public monedaSeleccionada:any;
 
     constructor(jugador?:Jugador) {
-        super(null,'Cara o Ceca',false,jugador);
+        super(null,'Cara o Ceca',null,jugador);
     }
 
     mezclarMonedas(){

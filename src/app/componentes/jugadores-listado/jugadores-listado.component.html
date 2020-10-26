@@ -5,11 +5,13 @@
   <thead>
     <tr>
       <th>Jugadores</th>
+      <th>Alias</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let jugadores of listado" >
       <td>{{jugadores.correo}} </td> 
+      <td>{{jugadores.alias}} </td> 
     </tr>
   </tbody>
 </table>

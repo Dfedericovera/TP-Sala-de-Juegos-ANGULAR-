@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {  trigger,  state,  style,  animate,  transition } from '@angular/animations';
 import { JuegoMemotest } from "../../clases/juego-memotest";
-import { AuthService } from 'src/app/servicios/auth.service';
 import { JuegoService } from 'src/app/servicios/juego.service';
 import { JugadoresService } from 'src/app/servicios/jugadores.service';
 
@@ -29,13 +28,16 @@ export class MemotestComponent implements OnInit {
   segundos:number=0;
   minutos:number=0;
   contador:any;
+  cantCartas:any;
 
   constructor(
-    private authService:AuthService,
     private jugadoresService:JugadoresService,
     private juegoService:JuegoService
     ) {
+      console.log(this.jugadoresService.jugador);
     this.memotest = new JuegoMemotest(this.jugadoresService.jugador);
+    console.log(this.cantCartas);
+
   }
 
   ngOnInit(): void {
@@ -75,9 +77,9 @@ export class MemotestComponent implements OnInit {
 
   verificarJuego(){    
     if(this.memotest.verificarJuego()){
+      this.memotest.gano = true;
       clearInterval(this.contador);
       this.isPlaying = false;
-      this.memotest.gano = true;
       this.memotest.tiempo = this.minutos+'min '+this.segundos+'seg';
       //Guardar Datos!!! y reiniciar el juego
       this.juegoService.addJuego(this.memotest).then(()=>{
@@ -87,6 +89,7 @@ export class MemotestComponent implements OnInit {
   }
 
   jugar(){
+    
     this.isPlaying = true;
     this.contador = setInterval( t=>{
       this.segundos += 1;

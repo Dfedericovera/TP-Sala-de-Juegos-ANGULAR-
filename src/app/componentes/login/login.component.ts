@@ -7,7 +7,8 @@ import { JugadoresService } from 'src/app/servicios/jugadores.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent
+{
   usuario: string;
   clave: string;
   contrasena: any;
@@ -16,23 +17,28 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private jugadoresService:JugadoresService,
-  ) {
+    private jugadoresService: JugadoresService,
+  )
+  {
     this.createForm();
   }
-  createForm() {
+  createForm()
+  {
     this.loginForm = this.formBuilder.group({
       correo: ['', [Validators.required, Validators.email]],
       clave: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-  IngresarComoAdmin() {
+  IngresarComoAdmin()
+  {
     this.loginForm.get('correo').setValue('admin@admin.com');
     this.loginForm.get('clave').setValue('111111');
   }
 
-  login() {
-    if (this.loginForm.invalid) {
+  login()
+  {
+    if (this.loginForm.invalid)
+    {
       this.markFormGroupTouched(this.loginForm);
     }
     this.authService
@@ -40,19 +46,23 @@ export class LoginComponent {
         this.loginForm.get('correo').value,
         this.loginForm.get('clave').value
       )
-      .then((data) => {
-        console.log('logeado exitosamente');
-        this.jugadoresService.getJugador(this.loginForm.get('correo').value);
+      .then((data) =>
+      {
+        console.log('logeado exitosamente', data);
       })
-      .catch((error) => {
+      .catch((error) =>
+      {
         console.error(error);
       });
   }
 
-  private markFormGroupTouched(formGroup: FormGroup) {
-    (<any>Object).values(formGroup.controls).forEach((control) => {
+  private markFormGroupTouched(formGroup: FormGroup)
+  {
+    (<any>Object).values(formGroup.controls).forEach((control) =>
+    {
       control.markAsTouched();
-      if (control.controls) {
+      if (control.controls)
+      {
         this.markFormGroupTouched(control);
       }
     });

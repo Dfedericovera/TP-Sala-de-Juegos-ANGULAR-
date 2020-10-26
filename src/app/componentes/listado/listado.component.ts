@@ -8,26 +8,9 @@ import { JuegoService } from '../../servicios/juego.service';
 })
 export class ListadoComponent implements OnInit {
   public listadoParaCompartir: Array<any>;
-   miServicioJuego:JuegoService
 
-  constructor(servicioJuego:JuegoService) {
-    this.miServicioJuego = servicioJuego;
-    
+  constructor(servicioJuego:JuegoService) {  
+  }  
+  ngOnInit() {    
   }
-  
-  ngOnInit() {
-    
-  }
-
- /*  llamaService(){
-    console.log("llamaService");
-    this.listadoParaCompartir= this.miServicioJuego.listar();
-  }
-
-  llamaServicePromesa(){
-    console.log("llamaServicePromesa");
-    this.miServicioJuego.listarPromesa().then((listado) => {
-        this.listadoParaCompartir = listado;
-    });
-  } */
 }

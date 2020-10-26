@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { JuegoAgilidad } from '../../clases/juego-agilidad';
 import { JuegoService } from '../../servicios/juego.service';
-import { AuthService } from '../../servicios/auth.service';
 import { JugadoresService } from 'src/app/servicios/jugadores.service';
 
 @Component({
@@ -9,7 +8,8 @@ import { JugadoresService } from 'src/app/servicios/jugadores.service';
   templateUrl: './agilidad-aritmetica.component.html',
   styleUrls: ['./agilidad-aritmetica.component.css'],
 })
-export class AgilidadAritmeticaComponent implements OnInit {
+export class AgilidadAritmeticaComponent implements OnInit
+{
   @Output()
   enviarJuego: EventEmitter<any> = new EventEmitter<any>();
   nuevoJuego: JuegoAgilidad;
@@ -19,26 +19,28 @@ export class AgilidadAritmeticaComponent implements OnInit {
   gano: Boolean;
   perdio: boolean;
 
-  ngOnInit() {}
+  ngOnInit() { }
   constructor(
     private juegoService: JuegoService,
-    private jugadoresService:JugadoresService,
-    private authService: AuthService
-  ) {
-    console.log(this.authService.user);
+    private jugadoresService: JugadoresService,
+  )
+  {
+
     this.ocultarVerificar = true;
-    this.nuevoJuego = new JuegoAgilidad(false);
-    console.info('Inicio agilidad');
+    this.nuevoJuego = new JuegoAgilidad(false, this.jugadoresService.jugador);
   }
-  
-  NuevoJuego() {
+
+  NuevoJuego()
+  {
     this.ocultarVerificar = false;
     this.perdio = false;
     this.nuevoJuego.generarnumero();
     this.Tiempo = 10;
-    this.repetidor = setInterval(() => {
+    this.repetidor = setInterval(() =>
+    {
       this.Tiempo--;
-      if (this.Tiempo == 0) {
+      if (this.Tiempo == 0)
+      {
         clearInterval(this.repetidor);
         this.verificar();
         this.ocultarVerificar = true;
@@ -48,13 +50,15 @@ export class AgilidadAritmeticaComponent implements OnInit {
     this.gano = false;
   }
 
-  verificar() {
+  verificar()
+  {
     this.ocultarVerificar = true;
     this.gano = this.nuevoJuego.verificar();
     this.perdio = !this.gano;
     clearInterval(this.repetidor);
 
-    this.juegoService.addJuego(this.nuevoJuego).then((data) => {
+    this.juegoService.addJuego(this.nuevoJuego).then((data) =>
+    {
       console.log(data);
     });
   }

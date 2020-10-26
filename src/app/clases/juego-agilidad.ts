@@ -16,8 +16,10 @@ export class JuegoAgilidad extends Juego {
     public verificar() {
         
         if (this.resultado == this.numeroIngresado) {
+            this.gano = true;
             return true;
         } else {
+            this.gano = false;
             return false;
         }
     }

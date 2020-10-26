@@ -5,10 +5,9 @@ import { JugadoresService } from 'src/app/servicios/jugadores.service';
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css'],
 })
-export class PrincipalComponent {
-  public status: any = {
-    isFirstOpen: true,
-    isFirstDisabled: false,
-  };
-  constructor(private jugadoresService:JugadoresService) {}
+export class PrincipalComponent
+{
+  constructor(
+    private jugadoresService: JugadoresService,
+  ){}
 }

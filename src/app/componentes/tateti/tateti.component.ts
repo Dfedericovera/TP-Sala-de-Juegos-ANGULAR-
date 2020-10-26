@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/servicios/auth.service';
 import { JuegoService } from '../../servicios/juego.service';
 import { JuegoTateti } from '../../clases/juego-tateti';
 import { JugadoresService } from 'src/app/servicios/jugadores.service';
-/* import { bootstrapToggle } from "bootstrap-toggle"; */
 
 @Component({
   selector: 'app-tateti',
@@ -13,10 +11,10 @@ import { JugadoresService } from 'src/app/servicios/jugadores.service';
 export class TatetiComponent implements OnInit {
   mensaje: any;
   nuevoJuego: JuegoTateti;
+  posiblesElecciones:number=9;
   constructor(
     private juegoService: JuegoService,
     private jugadoresService:JugadoresService,
-    private authService: AuthService
   ) {
     this.nuevoJuego = new JuegoTateti(this.jugadoresService.jugador);
   }
@@ -24,16 +22,22 @@ export class TatetiComponent implements OnInit {
   ngOnInit() {}
 
   eleccion(id) {
+    if(this.posiblesElecciones == 1){
+        this.mensaje = 'EMPATE!!';
+        let modal = document.getElementById('efecto') as HTMLInputElement;
+        modal.style.display = '';
+    }
     var x = document.getElementById(id).innerText;
-    if (x == '') {
+    if (x == '' && this.posiblesElecciones != 0) {
       document.getElementById(id).innerText = 'X';
+      this.posiblesElecciones--;
       if (this.verificar()) {
         this.nuevoJuego.gano = true;
         this.guardarJuego();
         this.mensaje = 'GANASTE!!';
         let modal = document.getElementById('efecto') as HTMLInputElement;
         modal.style.display = '';
-      } else {
+      } else if(this.posiblesElecciones != 0){
         this.eleccionMaquina();
       }
       if (this.verificarMaquina()) {
@@ -55,8 +59,9 @@ export class TatetiComponent implements OnInit {
     var id = Math.floor(Math.random() * 8);
 
     var x = document.getElementById(id.toString()).innerText;
-    if (x != 'X' && x != 'O') {
+    if (x != 'X' && x != 'O') {      
       document.getElementById(id.toString()).innerText = 'O';
+      this.posiblesElecciones--;
     } else {
       this.eleccionMaquina();
     }
@@ -141,6 +146,7 @@ export class TatetiComponent implements OnInit {
   }
 
   reset() {
+    this.posiblesElecciones = 9;
     var a1 = (document.getElementById('0').innerText = '');
     var a2 = (document.getElementById('1').innerText = '');
     var a3 = (document.getElementById('2').innerText = '');
