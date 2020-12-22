@@ -31,7 +31,7 @@ export class JugadoresService
         jugadores.forEach(jugador =>
         {
   
-          if (jug.email == jugador.correo)
+          if (jugador.correo == jugador.correo)
           {
             this.jugador = jugador;
           }

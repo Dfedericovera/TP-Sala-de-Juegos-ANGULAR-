@@ -18,7 +18,6 @@ import { JugadoresService } from './servicios/jugadores.service';
 import { ErrorComponent } from './componentes/error/error.component';
 import { PrincipalComponent } from './componentes/principal/principal.component';
 import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/agilidad-aritmetica.component';
-import { MenuComponent } from './componentes/menu/menu.component';
 import { AdivinaMasListadoComponent } from './componentes/adivina-mas-listado/adivina-mas-listado.component';
 import { AgilidadMasListadoComponent } from './componentes/agilidad-mas-listado/agilidad-mas-listado.component';
 import { RuteandoModule } from './ruteando/ruteando.module';
@@ -67,7 +66,6 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
     PrincipalComponent,
     LoginComponent,
     AgilidadAritmeticaComponent,
-    MenuComponent,
     AdivinaMasListadoComponent,
     AgilidadMasListadoComponent,
     ListadoComponent,
