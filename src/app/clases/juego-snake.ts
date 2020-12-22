@@ -148,8 +148,8 @@ export class JuegoSnake extends Juego
         }
         else
         {
-            this.score = 0;
-            console.log("reiniciar");
+            console.log("Juego terminado. Puntaje: ",this.score);
+            this.score = 0;            
             this.configuration = {
                 level: 0,
                 speed: SPEED,
@@ -243,7 +243,7 @@ export class JuegoSnake extends Juego
 
     die()
     {
-        alert("Perdiste.. Prueba de nuevo!!\r\n\r\nPuntaje Final: " + this.score);
+        alert("Juego terminado!!\r\n\r\nPuntaje Final: " + this.score);
         this.stop();
     }
 
