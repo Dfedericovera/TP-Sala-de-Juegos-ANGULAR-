@@ -31,8 +31,7 @@ export class SnakeComponent implements OnInit, OnDestroy
   {
     this.snake.stop();
     this.snake.die();
-    /* this.snake.restart(); */
-    /* this.juegoService.addJuego() *//* .registrarJuego("/juegos/registrar", 'Snake', false); */
+    this.juegoService.addJuego(this.snake);
   }
 
   mostrar()

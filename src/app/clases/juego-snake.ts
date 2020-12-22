@@ -98,7 +98,6 @@ export class JuegoSnake extends Juego
     restart()
     {
         document.body.removeChild(this.canvas);
-        /* document.getElementById("snake").removeChild(this.canvas); */
     }
 
     stop()
