@@ -9,21 +9,25 @@ import { JugadoresService } from 'src/app/servicios/jugadores.service';
 })
 export class SnakeComponent implements OnInit, OnDestroy
 {
-
   showModal = false;
   snake: JuegoSnake;
   constructor(
-    private juegoService: JuegoService,
-    private jugadoresService:JugadoresService,)
-  {
-    this.snake = new JuegoSnake(this.jugadoresService.jugador);
-  }
+    public juegoService: JuegoService,
+    private jugadoresService: JugadoresService,)
+  { }
   ngOnDestroy()
   {
     this.snake.restart();
   }
   ngOnInit()
   {
+    this.snake = new JuegoSnake(this.jugadoresService.jugador);
+    this.snake.gameOver$.subscribe(juego=>{
+      var juegoParaGuardar = new JuegoSnake(this.jugadoresService.jugador);
+      juegoParaGuardar.score = juego.score;
+      console.log("Nuevo juego",juegoParaGuardar);
+      this.juegoService.addJuego(juegoParaGuardar);
+    })
   }
 
   iniciar()
@@ -34,7 +38,6 @@ export class SnakeComponent implements OnInit, OnDestroy
   {
     this.snake.stop();
     this.snake.die();
-    this.juegoService.addJuego(this.snake);
   }
 
   mostrar()

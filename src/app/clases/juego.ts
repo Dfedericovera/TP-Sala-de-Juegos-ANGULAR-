@@ -1,15 +1,17 @@
 import { Jugador } from './jugador';
 
-export class Juego {
+export class Juego
+{
   public id: string;
   public nombreJuego = 'Sin Nombre';
   public jugador: Jugador;
   public fecha: any
-  public hora:any;
+  public hora: any;
   public date
-  public gano = false;
+  public gano;
 
-  constructor(id?: string, nombreDelJuego?: string, gano?: boolean, jugador?: Jugador) {
+  constructor(id?: string, nombreDelJuego?: string, gano?: boolean, jugador?: Jugador)
+  {
     this.date = Date.now();
     if (nombreDelJuego)
       this.nombreJuego = nombreDelJuego;

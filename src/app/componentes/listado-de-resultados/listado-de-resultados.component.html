@@ -24,11 +24,11 @@
       <td>{{juego.fecha}} </td>
       <td>{{juego.hora}} </td>
 
-      <td *ngIf="juego.gano && !juego.tiempo && !juego.suerte">Gano </td>
+      <td *ngIf="juego.gano && !juego.tiempo && !juego.suerte && !juego.score">Gano </td>
       <td *ngIf="!juego.gano">Perdio</td>
       <td *ngIf="juego.tiempo">Lo logro en {{juego.tiempo}}</td>
       <td *ngIf="juego.suerte">Gano con {{juego.suerte}}% de prob </td>
-      <td *ngIf="juego.score">Puntuacíon: {{juego.score}}</td>
+      <td *ngIf="juego.score">Puntuación: {{juego.score}}</td>
     </tr>
   </tbody>
 </table>

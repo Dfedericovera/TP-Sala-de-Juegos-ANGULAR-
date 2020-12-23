@@ -82,9 +82,7 @@ export class MemotestComponent implements OnInit {
       this.isPlaying = false;
       this.memotest.tiempo = this.minutos+'min '+this.segundos+'seg';
       //Guardar Datos!!! y reiniciar el juego
-      this.juegoService.addJuego(this.memotest).then(()=>{
-        console.log('Juego guardado----');
-      })
+      this.juegoService.addJuego(this.memotest)
     }
   }
 
